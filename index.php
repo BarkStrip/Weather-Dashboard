@@ -36,11 +36,11 @@
                 <label for='cities'>Choose your city:</label> 
                 <select name='city' id='city' >
                 <optgroup label='Cities:'>
-                  <option value='Newark'>Newark</option>
-                  <option value='Hoboken'>Hoboken</option>
-                  <option value='Trenton'>Trenton</option>
-                  <option value='Princeton'>Princeton</option>
-                  <option value='Belmar'>Belmar</option>
+                  <option value='Newark'" . ($city == 'Newark' ? ' selected="selected"' : '') . ">Newark</option>
+                  <option value='Hoboken'" . ($city == 'Hoboken' ? ' selected="selected"' : '') . ">Hoboken</option>
+                  <option value='Trenton'" . ($city == 'Trenton' ? ' selected="selected"' : '') . ">Trenton</option>
+                  <option value='Princeton'" . ($city == 'Princeton' ? ' selected="selected"' : '') . ">Princeton</option>
+                  <option value='Belmar'" . ($city == 'Belmar' ? ' selected="selected"' : '') . ">Belmar</option>
                 </optgroup>
                 </select>
                 <input type='submit'>
