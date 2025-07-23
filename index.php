@@ -25,6 +25,37 @@
               die("Connection failed: " . $conn->connect_error);
             }
 
+
+
+            // ------------------------- update_city.sh block -----------------------|
+            // This checks if the weather data for the selected city is stale        |
+            // To switch to batch updates (all cities), delete this block (lns 30-57)|
+            // and run weather.sh instead.                                           |
+            
+            // Check if data is stale and fetch fresh data if needed
+            $timestamp_query = "SELECT UPDATE_TIME FROM information_schema.tables 
+            WHERE table_schema = 'weatherDB' AND table_name = '$city'";
+            $timestamp_result = $conn->query($timestamp_query);
+            $needs_update = true;
+
+
+            if ($timestamp_result) {
+                $row = $timestamp_result->fetch_assoc();
+                if ($row && $row['UPDATE_TIME'] !== null) {
+                    $last_update = strtotime($row['UPDATE_TIME']);
+                    $needs_update = (time() - $last_update) > 3600; // 1 hour
+                } else {
+                    // Handle the case where UPDATE_TIME is null (e.g., treat as stale)
+                    $needs_update = true;
+                }
+            }
+
+            if ($needs_update) {
+              exec("cd scripts && ./update_city.sh $city");
+            }
+            //                                                                       |
+            // ______________________________________________________________________|
+
             $sql = "SELECT period, temperature, short_desc, long_desc FROM $city" ; #SET CUSTOM VALUE
             $result = $conn->query($sql);
 
@@ -60,13 +91,10 @@
              <br></br>
             
              " ;
-             
-            
+
 
             echo "<table border='1'>";
-            
-            //$favoriteCity = $_POST["city"]; 
-            //echo $favoriteCity;
+
 
             while($row = $result->fetch_assoc())
             {
