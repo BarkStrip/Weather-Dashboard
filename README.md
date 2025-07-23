@@ -3,12 +3,12 @@
 Full-stack web application providing real-time 5-day weather forecasts for New Jersey cities with automated data updates and responsive user interface.
 
 ## Technical Stack
-Backend: PHP, MySQL;
-Frontend: HTML5, CSS3, JavaScript;
-Data Processing: Python, XML/HTML parsing;
-Web Scraping: cURL, TagSoup HTML parser;
-Database: MySQL with dynamic table management;
-Automation: Bash scripting, cron jobs
+- Backend: PHP, MySQL
+- Frontend: HTML5, CSS3, JavaScript
+- Data Processing: Python, XML/HTML parsing
+- Web Scraping: cURL, TagSoup HTML parser
+- Database: MySQL with dynamic table management
+- Automation: Bash scripting, cron jobs
 
 ## Requirements
 
